@@ -1,0 +1,67 @@
+OS : Ubuntu 18.04
+
+가상환경 생성 (파이썬 버전: 3.6) (명령어: python -m venv {가상환경이름})
+> python3.6 -m venv venv
+
+가상환경 실행 (os: Linux/Mac) (현재경로: ~/with-fit)
+> source venv/bin/activate
+
+pip 업그레이드
+> pip install --upgrade pip
+
+django 설치
+> pip install django
+
+nvidia 그래픽카드 확인
+> nvidia-smi
+
+마이그레이션된 DB 생성 (DB가 없다면 DB 설치후 DB 생성 setting.py에서 자세한 설정 가능)
+> python manage.py migrate
+
+(venv) 서버 시작 명령어
+> python manage.py runsslserver 0.0.0.0:8000 --certificate aidam.crt --key aidam.key
+
+포트 죽이기
+> fuser -k 8000/tcp
+> kill -9 {}
+
+>>>>>>> 모델 변화로 인한 셋팅 취소 <<<<<<
+
+opencv-python 설치
+> pip install opencv-python
+
+텐서플로우 gpu 1.14.0 버전 설치
+> pip install tensorflow-gpu==1.14.0
+
+사이킷런 설치
+> pip install scikit-learn==0.22.2
+
+/root/with-fit/venv/lib/python3.6/site-packages/tensorflow/python/keras/saving/hdf5_format.py
+210, 224, 711, 715, 778, 782 번째 줄
+.decode('utf-8') 주석
+
+
+
+코드 수정 keras.model -> tensorflow.keras.model
+(C:\Users\Admin\Final\Online-Realtime-Action-Recognition-based-on-OpenPose\Action)
+recognizer.py
+
+git bash 설치 (
+wget 미설치시 wget 다운로드
+C:\Program Files\Git\mingw64\bin에 wget.ext 붙여넣기
+
+
+C:\Users\Admin\Final\Online-Realtime-Action-Recognition-based-on-OpenPose\Pose\graph_models\VGG_origin
+폴더에서 오른쪽 클릭후 git bash 실행
+sh download.sh 
+명령어 실행
+
+
+# 노트북 CUDA 사용시 mx250 
+파이썬 버전에 맞춰서 CUDA 10 버전 설치
+util.py
+cap = cv.VideoCapture(0)
+↓ 코드 변경
+cap = cv.VideoCapture(0, cv.CAP_DSHOW)
+
+>>>>>>><<<<<<<<

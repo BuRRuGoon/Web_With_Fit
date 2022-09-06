@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/style_g1.css' %}"/>
+<script tpye="text/javascript"  src="{% static 'js/main.js' %}"></script>
+<script>
+    // main으로 이동
+    function go_main() {
+        history.back();
+        return false;
+    }
+
+    // 운동 선택으로 이동
+    function go_select() {
+        fetch('/select/').then(function(response) {
+            response.text().then(function(text) {
+                document.querySelector('body').innerHTML = text;
+            })
+        })
+    };
+
+    // bgm play
+    let bgm = new Audio();
+    bgm.src = "/static/sound/upright-piano-arcade-instrumental-mix-1342.mp3";
+    bgm.play();
+
+    let count = 1;
+
+    // bgm play, pause
+    function play_pause() {
+        console.log("play pause load")
+        if (count == 0) {
+            count = 1;
+            bgm.play();
+            document.getElementById('audiobtn').src = '/static/img/sound-on.png';
+        }
+        else {
+            count = 0;
+            bgm.pause();
+            document.getElementById('audiobtn').src = '/static/img/sound-off.png';
+        };
+    };
+
+    // withfit.html -> people.html
+    function select_exercise(exercise) {
+        const selected_exercise = exercise.value;
+        let exercise_img;
+        let guide;
+        console.log(selected_exercise);
+
+        if (selected_exercise == "푸시업") {
+            exercise_img = "push_up";
+            guide = "바닥에 엎드려서 양 손을 어깨너비로 벌리고 팔을 뻗고 시작합니다.<br>가슴이 바닥에 닿을 때까지 몸을 숙입니다.<br>잠깐 멈추었다가 다시 일어나는 것을 반복합니다.";
+        } else if (selected_exercise == "사이드 런지") {
+            exercise_img = "side_lunge";
+            guide = "손을 모으고 어깨를 폅니다.<br>한 다리를 바깥으로 움직입니다.<br>반대쪽 다리를 곧게 펴고 살짝 앉은 후 제자리로 돌아갑니다.<br>반대쪽도 반복합니다.";
+        } else if (selected_exercise == "스탠딩 니 업") {
+            exercise_img = "standing_knee_up";
+            guide = "발을 어깨너비로 하고 섭니다.<br>무릎을 최대한 높이 들어 올리기 위해 복근을 긴장시킵니다.<br>양 쪽 무릎을 번갈아가며 운동합니다.";
+        } else {
+            exercise_img = "step_forward_lunge";
+            guide = "발을 엉덩이 너비로 벌리고 서서 한 쪽 다리를 크게 앞으로 움직입니다.<br>허벅지가 바닥과 평행하고 정강이와 수직이 될 때까지 앉습니다.<br>제자리로 돌아갑니다.";
+        };
+        console.log(exercise_img);
+        
+        fetch('/player/').then(function(response) {
+            response.text().then(function(text) {
+                document.querySelector('section').innerHTML = text;
+                document.getElementById('ex_img').src = `/static/img/fitness/${exercise_img}.gif`;
+                document.getElementById("explain").innerHTML = guide;
+                document.getElementById('ex_name').innerHTML = selected_exercise;
+                document.getElementById('exercise').value = selected_exercise;
+            })
+        })
+    };
+</script>
+
+<section id="select">
+    <div class="screen">
+        <div>
+            <img id="back" src="/static/img/select-back.png" onclick="go_main()">
+            <h3 style="display:inline;">운동 선택</h3>
+            <img id="audiobtn" src="/static/img/sound-on.png" onclick="play_pause()">
+        </div><br><br>
+        <form method='POST'>
+            {% csrf_token %}
+            <div class="select_exercise">
+                <div class="exercise">
+                    <img src="/static/img/fitness/push_up.gif">
+                    <input type="button" value="푸시업" onclick="select_exercise(this)">
+                </div>
+                <div class="exercise">
+                    <img src="/static/img/fitness/side_lunge.gif">
+                    <input type="button" value="사이드 런지" onclick="select_exercise(this)">
+                </div>
+                <div class="exercise">
+                    <img src="/static/img/fitness/standing_knee_up.gif">
+                    <input type="button" value="스탠딩 니 업" onclick="select_exercise(this)">
+                </div>
+                <div class="exercise">
+                    <img src="/static/img/fitness/step_forward_lunge.gif">
+                    <input type="button" value="포워드 런지" onclick="select_exercise(this)">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>With Fitness</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- font: Neo둥근모 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@1.521/neodgm/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/neodgm/neodgm-webfont@1.521/neodgm_code/style.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/util.css' %}" rel="stylesheet" type="text/css" >
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+  
+  <!-- Model -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <!-- <h1 class="logo"><a href="{% url 'fitness:index' %}">With Fit</a></h1> -->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="/" class="logo">
+        <img src="{% static 'img/logo.png' %}" alt="with fit" class="img-fluid">
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">홈</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">About</a></li>
+          <li><a class="nav-link scrollto" href="#about">소식</a></li>
+          <li><a class="nav-link scrollto" href="#services">랭킹</a></li>
+          {% if request.session.email %}
+          <li class="dropdown"><a href="#"><span>{{ request.session.name }} 님</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">내정보</a></li>
+              <li><a href="#">계정설정</a></li>
+              <li><a href="{% url 'user:signout' %}">로그아웃</a></li>
+              <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li> -->
+            </ul>
+          </li>
+          {% else %}
+          <li><a href="/signin">로그인</a></li>
+          {% endif %}
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  {% block content %}
+  {% endblock %}
+
+</body>
+
+</html>

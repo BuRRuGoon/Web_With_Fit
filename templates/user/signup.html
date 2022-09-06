@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section id="signup">
+  <div class="container-login100">
+    <div class="wrap-login100 p-l-55 p-r-55">
+      <form method="post" action="/signup" class="login100-form validate-form"">
+        {% csrf_token %}
+        <span class="login100-form-title">
+          회원가입
+        </span>
+        
+        <div class="wrap-input100 validate-input" data-validate="이메일을 입력하세요">
+          <input class="input100" type="text" id="email" name="email" placeholder="이메일">
+          <span class="focus-input100" data-symbol="&#xf206;"></span>
+        </div>
+        
+        <div class="wrap-input100 validate-input" data-validate="비밀번호를 입력하세요">
+          <input class="input100" type="password" id="password" name="password" placeholder="비밀번호">
+          <span class="focus-input100" data-symbol="&#xf190;"></span>
+        </div>
+        
+        <div class="wrap-input100 validate-input" data-validate="비밀번호가 일치하지 않습니다">
+          <input class="input100" type="password" id="password-chk" name="password-chk" placeholder="비밀번호 확인">
+          <span class="focus-input100" data-symbol="&#xf190;"></span>
+        </div>
+        
+        <div class="wrap-input100 validate-input" data-validate="이름을 입력하세요">
+          <input class="input100" type="text" id="name" name="name" placeholder="이름">
+          <span class="focus-input100" data-symbol="&#xf190;"></span>
+        </div>
+        
+        <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn m-t-30">
+            <div class="login100-form-bgbtn"></div>
+            <button type="submit" class="login100-form-btn">
+              회원가입
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  const email_regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_]?[0-9a-zA-Z])*.[a-zA-Z]{1,3}$/i;
+	const password_regex = /^[a-zA-Z0-9!@#$%^&*()]{4,20}$/;
+	const name_regex = /^[0-9a-zA-Z가-힣]{2,20}$/;
+  
+  
+  // email 유효성 검사
+  const email_check = () => {
+    const email = document.getElementById('email').value;
+    console.log(email);
+  }
+</script>
+
+
+{% endblock %}
+
+

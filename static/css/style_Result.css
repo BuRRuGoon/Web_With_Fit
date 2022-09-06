@@ -1,0 +1,179 @@
+@font-face {
+    font-family: 'shadow9';
+    src: url('../font/shadow9.TTF');
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-image: url('../img/main-bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    align-content: center;
+    color: white;
+    font-family: 'NeoDunggeunmo';
+    /* overflow: hidden; */
+  }
+
+#monster {
+    position: absolute;
+    top: 17%;
+    right: 3%;
+    width: 25%;
+}
+
+#canvas {
+    position: absolute;
+    top: 16%;
+    left: 1%;
+    height: 83%;
+    width: 64%;
+    border-radius: 20px;
+}
+
+#canvas_hp {
+    position: absolute;
+    top: 1.5%;
+    right: 0.4%;
+    height: 5%;
+    width: 29.5%;
+}
+
+#label-container {
+    position: absolute;
+    bottom: 15%;
+    right: 0.4%;
+    height: 5%;
+    width: 29.5%;
+}
+
+.screen {
+    text-align: center;
+    position: absolute;
+    width: 74%;
+    height: 60%;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    /* background-color: thistle; */
+    padding: 6px;
+}
+
+.screen::-webkit-scrollbar {
+    width: 10px; /* 스크롤바 너비 */
+}
+
+.screen::-webkit-scrollbar-thumb {
+    background-color: white; /* 스크롤바 색상 */
+    border-radius: 10px;
+}
+
+.screen::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0); /* 스크롤바 배경색 */
+}
+
+.select_exercise div {
+    display: inline-block;
+    padding: 20px;
+}
+
+.exercise {
+    width: 250px;
+    height: 300px;
+}
+
+.select_exercise img {
+    width: 200px;
+    height: 200px;
+}
+
+input[type="button"] {
+    border: 5px;
+    border-color: orange;
+    background-color: rgba(0, 0, 0, 0);
+    color: orange;
+    font-size: 2em;
+    font-family: 'NeoDunggeunmo';
+}
+
+input[type="button"]:hover {
+    color: red;
+}
+
+/* people.html */
+h3 {
+    font-size: 30px;
+}
+
+.radio div {
+    display: inline-block;
+    margin: 20px;
+}
+
+.radio input {
+    display: none;
+}
+
+label {
+    cursor: pointer;
+    /* margin: 10px 10px; */
+}
+
+label:before {
+    content: '';
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background: orange;
+    border-radius: 50%;
+    z-index: 2;
+    transition: box-shadow .4s ease, background .3s ease;
+}
+
+input[type="radio"]:checked + label:before {
+    /* 수평 그림자 / 수직 그림자 / 선명도 / 확산 거리 */
+    box-shadow: inset 0px 0px 0 5px orange;
+    background: black;
+}
+
+p {
+    font-size: 20px;
+    color: white;
+}
+
+.nbsp {
+    margin: 20px;
+}
+
+.team {
+    text-align: center;
+    font-size: 50px;
+}
+
+input[type="text"] {
+    width: 200px;
+    height: 40px;
+    /* font-family: 'Do Hyeon', sans-serif; */
+    font-family: 'shadow9';
+    font-size: 50%;
+    text-align: center;
+}
+
+/* play.html */
+#timer {
+    font-family: 'Orbitron', sans-serif;
+    /* text-align: center; */
+    position: absolute;
+    top: -2%;
+    left: 57%;
+}
+
+#loading_image {
+    width: 1000px;
+    height: 1000px;
+    z-index: 10000;
+}

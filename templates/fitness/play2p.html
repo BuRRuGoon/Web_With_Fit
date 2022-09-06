@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_SD.css' %}"/>
+<script type="text/javascript" src="{% static 'js/loading.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/sideknee_model_player2.js' %}"></script>
+<script type="text/javascript">
+    //  이미지
+    //  얼굴
+    let maskimg = new Image();
+    maskimg.src = "../static/img/item/ironman_sm.png"
+
+    var audio_pose = new Audio('../static/sound/Kommy_BasicAttack_Hit.wav');
+    var audio_set = new Audio('../static/sound/Kommy_BasicAttack.wav');
+
+    // 손
+    let handimg = new Image();
+    handimg.src = "../static/img/item/ironman_Hand.png"
+
+    init();
+</script>
+
+<script>
+    // Damage Values
+    let result_score = 0;
+    let game_switch = 0; // 0 - 시작전 , 1 - 시작 , 2 - 종료
+    let sign_switch = 2; // 0 - Stand(준비상태) , 1 - Left or Right, 2 - 포즈 실행전
+
+    const bgm = new Audio();
+
+    let count = 1;
+    let time = 50; // 기준 시간
+    
+
+    bgm.src = "/static/sound/inspiring-8-bit-563.mp3";
+    bgm.volume = 0.5;
+    window.onload = function() {
+        bgm.play();
+    }
+</script>
+
+<div class='screen'>
+    <span class="msg-text"></span>
+    <span class="score-text">0 점</span>
+    <div id='timer'></div>
+    <canvas id="canvas"></canvas>
+    <img id="monster" scr="img/monster-jelly_0.gif">
+    <canvas id="canvas_hp"></canvas>
+    <div id="label-container"></div>
+    <div id="label-container2"></div>
+</div>
+
+<form name="score_form" method="post" action="/result/">
+    {% csrf_token %}
+    <input type="hidden" id="score" name="score">
+    <input type="hidden" id="option" name="option" value="{{ player }}">
+    <input type="hidden" id="fitness_name" name="fitness_name" value="{{ exercise_name }}">
+    <input type="hidden" id="user_name" name="user_name" value="{{ request.session.name }}">
+    <input type="hidden" id="fitness_index" name="fitness_index" value="{{ fitness_index }}">
+    <input type="hidden" id="user_index" name="user_index" value="{{ request.session.user_index }}">
+    <input type="hidden" id="stage" name="stage">
+</form>
+
+<script type="text/javascript" src="{% static 'js/health-bar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/monster.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+{% endblock %}

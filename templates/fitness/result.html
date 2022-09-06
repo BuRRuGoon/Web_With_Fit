@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_Result.css' %}" />
+<body>
+    <div class='screen'>
+        <p style='color:white; font-size: xx-large;'>결과 화면</p> <br>
+        <table id='tb-result' class="table table-borderless">
+            <thead style="color:white; font-size: x-large;">
+                <tr>
+                    <th>등수</th>
+                    <th>이름</th>
+                    <th>운동</th>
+                    <th>스테이지</th>
+                    <th>1인/2인</th>
+                    <th>점수</th>
+                </tr>
+            </thead>
+            <tbody style="color:white; font-size: large;">
+                {% for i in '1234567' %}
+                    {% if i != '4' %}
+                    <tr>
+                        <td class="row_num">{{ i }}</td>
+                        <td class="rank_user_name"></td>
+                        <td class="rank_fitness_name"></td>
+                        <td class="stage"></td>
+                        <td class="option"></td>
+                        <td class="rank_score"></td>
+                    </tr>
+                    {% else %}
+                    <tr style="color:red;">
+                        <td class="row_num">{{ i }}</td>
+                        <td class="rank_user_name"></td>
+                        <td class="rank_fitness_name"></td>
+                        <td class="stage"></td>
+                        <td class="option"></td>
+                        <td class="rank_score"></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+
+        </table>
+        <br>
+        <input type="button" value="CONTINUE" onclick="location.href = '../select'"></input>
+        <input type="button" value="CLOSE" onclick="location.href = '../'"></input>
+    </div>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const get_result = () => {
+        const result = axios({
+            url: 'https://withfit.ml:8000/get_result/',
+            method: 'get'
+        });
+        result.then((context) => {
+            const data = context.data;
+            // const user_index = "{{ user_index }}";
+            // let my_pk = 9999;
+
+            // for (let i = 0; i < data.result_data.length; i++) {
+            //     if(data.result_data[i].pk == user_index){
+            //         my_rank = i;
+            //         break;
+            //     }
+            // }
+            // console.log(my_pk);
+
+            rank_user_name = document.getElementsByClassName('rank_user_name');
+            rank_fitness_name = document.getElementsByClassName('rank_fitness_name');
+            stage = document.getElementsByClassName('stage');
+            option = document.getElementsByClassName('option');
+            rank_score = document.getElementsByClassName('rank_score');
+
+            for (let i = 0; i < 7; i++) {
+                rank_user_name[i].innerHTML = data.result_data[i].rank_user_name;
+                rank_fitness_name[i].innerHTML = data.result_data[i].rank_fitness_name;
+                stage[i].innerHTML = data.result_data[i].stage;
+                option[i].innerHTML = data.result_data[i].option + "인";
+                rank_score[i].innerHTML = data.result_data[i].rank_score + "점";
+            }
+        });
+    }
+    get_result();
+</script>
+
+{% endblock %}

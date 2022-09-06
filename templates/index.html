@@ -1,0 +1,366 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+  <video id="bgvid" muted autoplay loop>
+    <source src="{% static 'img/hero-bg.mp4' %}" type="video/mp4">
+    Sorry, your browser does not support HTML5 video.
+  </video>
+  <!-- <div id="filter-box"></div> -->
+  {% if request.session.name %}
+    <a href="/select"><div id="coin"></div></a>
+  {% else %}
+    <a href="/signin"><div id="coin"></div></a>
+  {% endif %}
+</section>
+<!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>소식</h2>
+      </div>
+
+      <div class="row content">
+        <div class="col-lg-6">
+          <p>공지사항 <a href="#">></a></p>
+          <ul>
+            <li><i class="ri-check-double-line"></i> [공지사항] 서비스 불안정 현상 안내 (10/18) (완료)</li>
+            <li><i class="ri-check-double-line"></i> [공지사항] 카페, 게임에서의 제재 문의, 신고, 제재 결과 관련 안내</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>업데이트 <a href="#">></a></p>
+          </p>
+          <ul>
+            <li><i class="ri-check-double-line"></i> [업데이트] 1.1.2 데드리프트 추가</li>
+            <li><i class="ri-check-double-line"></i> [업데이트] 1.1.1 스쿼트 추가</li>
+          </ul>
+          <!-- <a href="#" class="btn-learn-more">Learn More</a> -->
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>랭킹</h2>
+        <h3><span>명예의 전당</span></h3>
+        <!-- <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p> -->
+      </div>
+
+      <div class="row">
+        
+        {% for i in '1234' %}
+        <div class="col-md-6 col-lg-3 align-items-stretch mb-5 mb-lg-0">
+          <div class="icon-box rank-box">
+            <div class="icon">
+              {% if i == '1' or i == '3'%}
+              <i class="bx bx-trophy"></i>
+              {% else %}
+              <i class="bx bxs-trophy"></i>
+              {% endif %}
+            </div>
+            <h4>{{ i }} 위</h4>
+            <h4 class="rank_user_name"></h4>
+            <p class="rank_score description"></p>
+            <p class="rank_fitness_name description"></p>
+            <p class="option description"></p>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+  <!-- ======= Features Section ======= -->
+  <section id="features" class="features">
+  </section><!-- End Features Section -->
+
+  <!-- ======= Team Section ======= -->
+  <!-- <section id="team" class="team">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Team</h2>
+        <h3>We are <span>Aidam man</span></h3>
+        <p>I love you 3000 boardgames.</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <div class="member-img">
+              <img src="{% static 'img/team/team-1.jpg' %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>Sundong Kim</h4>
+              <span>latte is horse.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <div class="member-img">
+              <img src="{% static 'img/team/team-2.jpg' %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>G1 Lee</h4>
+              <span>Boardgame Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <div class="member-img">
+              <img src="{% static 'img/team/team-3.jpg' %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>JJong</h4>
+              <span>Project Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <div class="member-img">
+              <img src="{% static 'img/team/team-4.jpg' %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>1suck Kang</h4>
+              <span>Bu gwan</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section> -->
+  <!-- End Team Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <h3>Contact <span>Us</span></h3>
+        <p>1인 1보드게임 필히 지참 바랍니다.</p>
+      </div>
+
+      <div>
+        <iframe style="border:0; width: 100%; height: 270px;"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3159.697032300452!2d126.83039391572831!3d37.63281377978552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9b7f5e9732ad%3A0x9b487bea245cc530!2z67O065Oc6rKM7J6E7Lm07Y6YIOugiOuTnOuyhO2KvCDtmZTsoJU!5e0!3m2!1sko!2skr!4v1639531058155!5m2!1sko!2skr"
+          frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div class="row mt-5">
+
+        <div class="col-lg-4">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>경기도 고양시 덕양구 화정동 화신로260번길 47</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>https://redbutton.co.kr/</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>+82 31 970 3799</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 mt-5 mt-lg-0">
+          <form action="#" method="post" role="form" class="email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="이름" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="이메일" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="지참 보드게임" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="보드게임 동아리 지원동기 및 입단 후 포부를 경험에 빗대어 설명하시오 (500자이내)" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="button">Send Message</button></div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+  <!-- <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>Team Aidam</h3>
+          <p>
+            경기도 고양시 덕양구<br>
+            화신로260번길 47 4층 401호<br>
+            <br>
+            <strong>Tel:</strong> +82 31 970 3799<br>
+            <strong>Email:</strong> https://redbutton.co.kr/<br>
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Machine Learning</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Deep Learning</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Game Programming</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-newsletter">
+          <h4>Join Our Newsletter</h4>
+          <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+          <form action="" method="post">
+            <input type="email" name="email"><input type="submit" value="Subscribe">
+          </form>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-md-flex py-4">
+
+    <div class="me-md-auto text-center text-md-start">
+      <h3>Team Aidam</h3>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Aidam</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="#">Aidam</a>
+      </div>
+    </div>
+    <div class="social-links text-center text-md-right pt-3">
+      <a href="https://github.com/jonaheey/with-fit" target='_blank' class="github"><i class="bx bxl-github"></i></a>
+      <a href="https://youtu.be/69CtWnb1tpU" target='_blank' class="youtube"><i class="bx bxl-youtube"></i></a>
+      <a href="https://blog.naver.com/redbabo67/222601398359" target='_blank' class="blogger"><i class="bx bxl-blogger"></i></a>
+      <a href="https://www.twitch.tv/BuRRuGoon" target='_blank' class="twitch"><i class="bx bxl-twitch"></i></a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+    class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'js/main.js' %}"></script>
+
+<!-- Ajax -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  const get_rank = () => {
+    const rank = axios({
+      url: 'https://withfit.ml:8000/get_rank/',
+      method: 'get'
+    });
+    rank.then((context) => {
+      const data = context.data;
+
+      rank_user_name = document.getElementsByClassName('rank_user_name');
+      rank_score = document.getElementsByClassName('rank_score');
+      rank_fitness_name = document.getElementsByClassName('rank_fitness_name');
+      option = document.getElementsByClassName('option');
+
+      for (let i = 0; i < data.num; i++) {
+        rank_user_name[i].innerHTML = data.rank_data[i].rank_user_name;
+        rank_score[i].innerHTML = "점수 : " + data.rank_data[i].rank_score;
+        rank_fitness_name[i].innerHTML = "운동 : " + data.rank_data[i].rank_fitness_name;
+        option[i].innerHTML = "인원수 : " + data.rank_data[i].option + "인";
+      }
+    });
+  }
+  get_rank();
+</script>
+
+{% endblock %}
