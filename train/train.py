@@ -15,6 +15,7 @@ from keras.callbacks import Callback
 import itertools
 from sklearn.metrics import confusion_matrix
 
+# 액션 클래스 구현
 class Actions(Enum):
     # framewise_recognition.h5
     # squat = 0
@@ -110,10 +111,10 @@ Y = dataset[0:785, 36]
 encoder_Y = [0]*643 + [1]*76 + [2]*66
 dummy_Y = np_utils.to_categorical(encoder_Y)
 
-# train test split
+# train test split 구현
 X_train, X_test, Y_train, Y_test = train_test_split(X, dummy_Y, test_size=0.1, random_state=9)
 
-# build keras model
+# 케라스 Dense 레이어 구성
 model = Sequential()
 model.add(Dense(units=128, activation='relu'))
 model.add(BatchNormalization())
@@ -123,7 +124,7 @@ model.add(Dense(units=16, activation='relu'))
 model.add(BatchNormalization())
 model.add(Dense(units=3, activation='softmax'))  # units = nums of classes
 
-# training
+# 학습 및 학습결과 그래프 출력
 his = LossHistory()
 model.compile(loss='categorical_crossentropy', optimizer=Adam(0.0001), metrics=['accuracy'])
 model.fit(X_train, Y_train, batch_size=32, epochs=70, verbose=1, validation_data=(X_test, Y_test), callbacks=[his])
